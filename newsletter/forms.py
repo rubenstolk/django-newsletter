@@ -57,8 +57,8 @@ class SubscribeRequestForm(NewsletterForm):
         # Check whether we have already been subscribed to
         try:
             subscription = Subscription.objects.get(email_field__exact=value, newsletter=self.instance.newsletter)
-            if subscription.subscribed:
-                raise ValidationError(_("Your e-mail address has already been subscribed to."))
+
+            raise ValidationError(_("Your e-mail address has already been subscribed to."))
                             
         except Subscription.DoesNotExist:
             pass
